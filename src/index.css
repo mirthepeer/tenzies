@@ -1,13 +1,106 @@
-body {
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body{
+  border: .8em solid;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  height: 100vh;
+  padding: .7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.instructions{
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 100;
+  padding: 0 1em;
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+.stats{
+  font-size: 2rem;
+}
+.help{
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.516);
+  letter-spacing: 2px;
+}
+.topScore{
+  position: absolute;
+  top: .6em;
+  right: .6em;
+  left: .6em;
+  padding: .5em;
+  background-color: rgba(134, 88, 162, 0.959);
+  font-size: 1.3rem;
+  color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  letter-spacing: 1px;
+
+}
+
+
+.timer{
+  font-weight: bold;
+}
+
+.dice-container{
+  display: grid;
+  justify-content: center;
+  width: 100%;
+  grid-template-columns: repeat(5,minmax(20px,150px));
+  margin: .7em auto;
+  gap: .7em;
+  padding:.2em;
+  justify-self: center;
+  
+
+
+}
+
+.die-value{
+  box-shadow: 0 0 5px black;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+.die-value:hover{
+  background-color: rgba(211, 195, 239, 0.998);
+  cursor: pointer;
+}
+
+
+.button{
+margin: 0 auto;
+width: 20%;
+}
+
+button{
+  width: 100%;
+  border: none;
+  padding: 1em 0;
+  font-size: 1.3rem;
+  background-color: blueviolet;
+  color: whitesmoke;
+  border-radius: 7px;
+  margin-top: 1em;
+}
+
+button:hover{
+  cursor: pointer;
+  background-color: rgba(79, 20, 108, 0.984);
+}
+
+
