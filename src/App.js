@@ -144,7 +144,7 @@ function App() {
   return (
     <>
     <div className='topScore'>
-    <h2>⭐ Top Score ⭐</h2>
+    <h2 className='score-heading'>⭐Top Score⭐</h2>
       <div className='score-stats'>
       <p><strong>Rolls: </strong><span style={rollStatStyle}>{topScore.rolls === null? '-' :topScore.rolls}</span></p>
       <p className='timer'>Time: <span style={timerStyle}>{topScore.time===0? '-' : `${topScore.time}s`}</span></p>
