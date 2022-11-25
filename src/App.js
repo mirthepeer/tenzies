@@ -10,11 +10,13 @@ import Confetti from 'react-confetti'
 
 function App() {
   const {useState, useEffect} = React
-  
+
   const [dice, setDice] = useState(generateDice())
   const [gameState, setGameState] = useState(defaultGameState())
   const [topScore, setTopScore] = useState(JSON.parse(localStorage.getItem('topScore'))|| {rolls: null, time:0})
   
+  // to check if the user has won the game and changing
+  // the state of game accordingly
   useEffect(()=>{
     const firstValue = dice[0].value
     if(dice.every(dice=>dice.value  === firstValue && dice.isHeld)){
@@ -26,6 +28,8 @@ function App() {
     }
   },[dice])
 
+  
+  // to determine if user has beaten the previous topscore
   useEffect(()=>{
     
     if(gameState.tenzies){
@@ -43,11 +47,12 @@ function App() {
     }
   },[gameState.tenzies])
 
-
+// everytime  the topScore changes this useEffect is called and the topScore is set to the current value in local Storage
   useEffect(()=>{
     localStorage.setItem('topScore', JSON.stringify(topScore))
   },[topScore])
 
+  // this useEffect controls the timer and it only runs while the game has not won
   useEffect(()=>{
    let timer;
    if(!gameState.tenzies){
@@ -56,12 +61,12 @@ function App() {
     }),1000)
  
    }  
-     
+    //  clean up function to remmove the timer once the game is finished
      return ()=> clearInterval(timer)
     
   },[gameState.tenzies])
   
- 
+//  generate random die using uuid so the dice has unique ids onced created
   function generateRandomDie(){
     const die ={
      value: Math.ceil(Math.random() * 6),
@@ -74,10 +79,12 @@ function App() {
      return die
    }
 
+  // initialze a game state when the game begins from start
    function defaultGameState(){
     return {tenzies:false, rolls:1, time:0}
    }
 
+  //  using the generateRandomDie function this function returns 10 dice array.
    function generateDice(){
     let diceArray = []
     for(let i =0; i<10;i++){
@@ -88,7 +95,7 @@ function App() {
     return diceArray
    }
 
-
+  //  logic to tell when the dice is held/clicked so it can change state accordingly and it value doesn't change if it's held
    function holdDie(id){
     setDice(dice=>{
       return (
@@ -101,6 +108,7 @@ function App() {
     })
    }
 
+  //  it ignores the dice that are already held and creates a new random dice that is not held
    function rollDice(){
     if(!gameState.tenzies){
       setDice(prev=>{
@@ -110,8 +118,9 @@ function App() {
       })
       setGameState(prev=>{
         return ({...prev, rolls: prev.rolls + 1})
-      } )  
-    }else{
+      } )
+      // if the game has ended the else block will run so we can restart the game using the default settings 
+    }else{   
       setDice(generateDice())
       setGameState(defaultGameState())
     }
