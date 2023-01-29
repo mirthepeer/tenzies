@@ -15,6 +15,7 @@ https://competitivetenzies.netlify.app/
 - Interactive
 - Score Tracking/Stats
 - Responsive Design
+- Timed Gameplay
 
 
 ## Run Locally
